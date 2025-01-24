@@ -40,10 +40,16 @@ export default function App() {
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-    const { name, value, type, checked } = e.target;
+    const { name, type, value } = e.target;
+  
+    const newValue =
+      type === "checkbox"
+        ? (e.target as HTMLInputElement).checked
+        : value;
+  
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: newValue
     }));
   }
 
