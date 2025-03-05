@@ -35,21 +35,15 @@ export default function App() {
     if (data.recurring && !data.repeatFrequency) {
       hasError = true;
     }
-
+4
     return !hasError;
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
-    const { name, type, value } = e.target;
-  
-    const newValue =
-      type === "checkbox"
-        ? (e.target as HTMLInputElement).checked
-        : value;
-  
+    const { name, value, type } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: newValue
+      [name]: type === "checkbox" ? e.target.checked : value,
     }));
   }
 
@@ -77,7 +71,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>Lunch Order Form</h1>
-      <p>This form contains intentional UX issues. Have fun fixing it!</p>
+      <p>This form contains intentional UX issues. Have fun improving it!</p>
 
       <form>
         <div>
